@@ -13,7 +13,7 @@ namespace Tuerschild
     {
 
         const string baseUrl = "http://www.htl-salzburg.ac.at";
-        string listUrl = baseUrl + "/lehrerliste";
+        string listUrl = baseUrl + "/lehrerinnen";
         private string targetRoom;
 
         private async void Start()
