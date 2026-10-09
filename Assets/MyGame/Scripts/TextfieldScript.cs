@@ -12,33 +12,18 @@ namespace Tuerschild
     public class Textfield : MonoBehaviour
     {
 
-        const string baseUrl = "https://www.htl-salzburg.ac.at";
+        const string baseUrl = "http://www.htl-salzburg.ac.at";
         string listUrl = baseUrl + "/lehrerliste";
-        public string targetRoom;
-        private string result;
-        public string teacherlinks;
-        
-
-        Regex teacherRegex = new Regex(
-        "<a href=\"(?<link>/lehrer/[^\"]*?room=(?<room>[A-Z0-9]+))\">(?<name>[^<]+)</a>");
-
+        private string targetRoom;
 
         private async void Start()
         {
+            targetRoom = "Sign-" + gameObject.name;
             TMP_Text textComponent = GetComponent<TMP_Text>();
-            targetRoom = textComponent.text;
+            
 
-            await FetchTeachers();
+            textComponent.text = await FetchTeachers();
         }
-
-        void Update()
-        {
-
-        }
-
-
-
-
 
 
 
