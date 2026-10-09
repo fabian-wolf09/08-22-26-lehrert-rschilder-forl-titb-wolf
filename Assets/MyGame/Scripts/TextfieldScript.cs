@@ -18,7 +18,7 @@ namespace Tuerschild
 
         private async void Start()
         {
-            targetRoom = "Sign-" + gameObject.name;
+            targetRoom = gameObject.name.Replace("Sign-", "");
             TMP_Text textComponent = GetComponent<TMP_Text>();
             
 
