@@ -104,7 +104,7 @@ Diese Informationen extrahieren wir mit Regex.
 
 ---
 
-# 💻 Finaler Unity‑C#‑Code 
+# Finaler Unity‑C#‑Code 
 
 ```csharp
 using System;
