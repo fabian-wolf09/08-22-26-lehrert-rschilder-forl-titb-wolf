@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Tuerschild
 {
@@ -14,16 +15,20 @@ namespace Tuerschild
         const string baseUrl = "https://www.htl-salzburg.ac.at";
         string listUrl = baseUrl + "/lehrerliste";
         public string targetRoom;
-        
+        private string result;
         public string teacherlinks;
-        Regex teacherLinkRegex = new Regex
+        
+
         Regex teacherRegex = new Regex(
         "<a href=\"(?<link>/lehrer/[^\"]*?room=(?<room>[A-Z0-9]+))\">(?<name>[^<]+)</a>");
 
 
         private async void Start()
         {
-            await LoadTeachers();
+            TMP_Text textComponent = GetComponent<TMP_Text>();
+            targetRoom = textComponent.text;
+
+            await FetchTeachers();
         }
 
         void Update()
@@ -31,10 +36,14 @@ namespace Tuerschild
 
         }
 
-        private async Task LoadTeachers()
+
+
+
+
+
+
+        private async Task<string> FetchTeachers()
         {
-
-
             HttpClient client = new HttpClient();
             string html = await client.GetStringAsync(listUrl);
 
@@ -80,6 +89,7 @@ namespace Tuerschild
                 result += $"{mail}\n";
                 result += $"{tel}\n\n";
             }
+            return result;
         }
     }
 }
