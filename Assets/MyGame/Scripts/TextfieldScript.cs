@@ -10,14 +10,21 @@ namespace Tuerschild
 {
     public class Textfield : MonoBehaviour
     {
+
+        const string baseUrl = "https://www.htl-salzburg.ac.at";
+        string listUrl = baseUrl + "/lehrerliste";
+        public string targetRoom;
+        
         public string teacherlinks;
         Regex teacherLinkRegex = new Regex
         Regex teacherRegex = new Regex(
         "<a href=\"(?<link>/lehrer/[^\"]*?room=(?<room>[A-Z0-9]+))\">(?<name>[^<]+)</a>");
+
+
         private async void Start()
-    {
-        await LoadTeachers();
-    }
+        {
+            await LoadTeachers();
+        }
 
         void Update()
         {
@@ -26,8 +33,7 @@ namespace Tuerschild
 
         private async Task LoadTeachers()
         {
-            string baseUrl = "https://www.htl-salzburg.ac.at";
-            string listUrl = baseUrl + "/lehrerliste";
+
 
             HttpClient client = new HttpClient();
             string html = await client.GetStringAsync(listUrl);
